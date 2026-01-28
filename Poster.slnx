@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Poster.Application/Poster.Application.csproj" Id="03bca3be-563c-48b7-bbbe-57df0a29dc74" />
+    <Project Path="src/Poster.Core/Poster.Core.csproj" Id="1a928721-272f-4726-94cc-0776c034ad21" />
+    <Project Path="src/Poster.Infrastructure/Poster.Infrastructure.csproj" Id="87301af1-3187-4df0-927b-93a94f6debfa" />
+    <Project Path="src/Poster.Presentation/Poster.Presentation.csproj" Id="4cebb3ba-fbd1-4c86-b150-56cd5a93a1a8" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Poster.IntegrationTests/Poster.IntegrationTests.csproj" Id="929dfa56-2db7-4a73-94cf-67181126639d" />
+    <Project Path="tests/Poster.UnitTests/Poster.UnitTests.csproj" Id="f186e3e0-adbd-416d-b889-f28bd1236c8a" />
+  </Folder>
+</Solution>
