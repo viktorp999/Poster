@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Poster.Core.Entities.Comments;
 using Poster.Core.Entities.Identity.Media;
+using Poster.Core.Entities.Joins.Comments.Likes;
+using Poster.Core.Entities.Joins.Posts.Likes;
+using Poster.Core.Entities.Joins.Posts.Saves;
 using Poster.Core.Entities.Posts;
 using Poster.Core.Enums.Users;
 using Poster.Core.ValueObjects.Users;
@@ -13,7 +16,7 @@ namespace Poster.Core.Entities.Identity
         {
         }
 
-        private AppUser(string userName) 
+        private AppUser(string userName)
             : base(userName)
         {
         }
@@ -42,5 +45,11 @@ namespace Poster.Core.Entities.Identity
         public IEnumerable<VideoPost> VideoPosts { get; set; }
         public IEnumerable<StandardPostComment> StandardPostComments { get; set; }
         public IEnumerable<VideoPostComment> VideoPostComments { get; set; }
+        public IEnumerable<UserStandardPostSaves> StandardPostSaves { get; set; }
+        public IEnumerable<UserVideoPostSaves> VideoPostSaves { get; set; }
+        public IEnumerable<UserStandardPostLikes> StandardPostLikes { get; set; }
+        public IEnumerable<UserVideoPostLikes> VideoPostLikes { get; set; }
+        public IEnumerable<UserStandardPostCommentLikes> StandardPostCommentLikes { get; set; }
+        public IEnumerable<UserVideoPostCommentLikes> VideoPostCommentLikes { get; set; }
     }
 }

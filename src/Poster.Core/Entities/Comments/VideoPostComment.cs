@@ -1,5 +1,6 @@
 ﻿using Poster.Core.Entities.Comments.Common.Abstractions;
 using Poster.Core.Entities.Identity;
+using Poster.Core.Entities.Joins.Comments.Likes;
 using Poster.Core.Entities.Posts;
 
 namespace Poster.Core.Entities.Comments
@@ -20,5 +21,6 @@ namespace Poster.Core.Entities.Comments
 
         public Guid VideoPostId { get; set; }
         public VideoPost VideoPost { get; set; }
+        public IEnumerable<UserVideoPostCommentLikes> Likes { get; set; }
     }
 }
