@@ -10,7 +10,7 @@ using Poster.Core.ValueObjects.Users;
 
 namespace Poster.Core.Entities.Identity
 {
-    public class AppUser : IdentityUser<Guid>
+    public sealed class AppUser : IdentityUser<Guid>
     {
         public AppUser() : base()
         {
