@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Poster.Core.Entities.Comments;
 using Poster.Core.Entities.Identity;
+using Poster.Core.Entities.Identity.Constrains;
 using Poster.Core.Entities.Identity.Media;
 using Poster.Core.Entities.Joins.Comments.Likes;
 using Poster.Core.Entities.Joins.Posts.Likes;
@@ -13,8 +14,8 @@ using System.Reflection;
 
 namespace Poster.Infrastructure.Data
 {
-    public class PosterDbContext : IdentityDbContext<AppUser, IdentityRole<Guid>, Guid,
-        IdentityUserClaim<Guid>, IdentityUserRole<Guid>, IdentityUserLogin<Guid>, IdentityRoleClaim<Guid>,
+    public class PosterDbContext : IdentityDbContext<AppUser, Role, Guid,
+        IdentityUserClaim<Guid>, UserRole, IdentityUserLogin<Guid>, IdentityRoleClaim<Guid>,
         IdentityUserToken<Guid>>
     {
         public PosterDbContext(DbContextOptions<PosterDbContext> options) 
@@ -35,13 +36,13 @@ namespace Poster.Infrastructure.Data
         public DbSet<Image> PostImages { get; set; }
         public DbSet<Video> PostVideos { get; set; }
         public DbSet<ProfilePhoto> UserProfilePhotos { get; set; }
+        public DbSet<Premission> Premissions { get; set; }
+        public DbSet<RolePremission> RolePremissions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<IdentityRole<Guid>>().ToTable("Roles");
-            modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("UserRoles");
             modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("UserClaims");
             modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("UserLogins");
             modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("RoleClaims");

@@ -8,6 +8,8 @@ builder.Services.AddCorsServices();
 
 var app = builder.Build();
 
+app.UseExceptionHandler();
+
 app.UseCors(CorsServicesExtension.AllowAllPolicy);
 
 app.MapControllers();

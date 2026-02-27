@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Poster.Core.Entities.Comments;
+using Poster.Core.Entities.Identity.Constrains;
 using Poster.Core.Entities.Identity.Media;
 using Poster.Core.Entities.Joins.Comments.Likes;
 using Poster.Core.Entities.Joins.Posts.Likes;
@@ -51,5 +52,6 @@ namespace Poster.Core.Entities.Identity
         public IEnumerable<UserVideoPostLikes> VideoPostLikes { get; set; }
         public IEnumerable<UserStandardPostCommentLikes> StandardPostCommentLikes { get; set; }
         public IEnumerable<UserVideoPostCommentLikes> VideoPostCommentLikes { get; set; }
+        public ICollection<UserRole> UserRoles { get; set; }
     }
 }

@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Poster.Application.Helpers.Options;
 using Poster.Core.Entities.Identity;
+using Poster.Core.Entities.Identity.Constrains;
 using Poster.Infrastructure.Data;
+using Poster.Presentation.Authorization;
 using System.Text;
 
 namespace Poster.Presentation.Extensions
@@ -25,6 +28,8 @@ namespace Poster.Presentation.Extensions
             })
                 .AddUserManager<UserManager<AppUser>>()
                 .AddSignInManager<SignInManager<AppUser>>()
+                .AddRoleManager<RoleManager<Role>>()
+                .AddRoles<Role>()
                 .AddEntityFrameworkStores<PosterDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -50,6 +55,8 @@ namespace Poster.Presentation.Extensions
                 });
 
             services.AddAuthorization();
+            services.AddSingleton<IAuthorizationHandler, PremissionAuthorizationHandler>();
+            services.AddSingleton<IAuthorizationPolicyProvider, PremissionPolicyProvider>();
 
             return services;
         }

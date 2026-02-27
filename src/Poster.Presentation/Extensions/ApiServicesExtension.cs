@@ -1,7 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Poster.Application;
 using Poster.Application.Helpers.Options;
+using Poster.Infrastructure;
 using Poster.Infrastructure.Data;
+using Poster.Presentation.Middlewares.ExceptionHandlers;
 
 namespace Poster.Presentation.Extensions
 {
@@ -11,6 +14,9 @@ namespace Poster.Presentation.Extensions
             IConfiguration config)
         {
             services.AddControllers();
+            services.AddEndpointsApiExplorer();
+            services.AddApplication();
+            services.AddInfrastructure();
             services.AddOptions<ConnectionStringsOptions>()
                 .Bind(config.GetSection(ConnectionStringsOptions.SectionName))
                 .ValidateDataAnnotations()
@@ -22,7 +28,11 @@ namespace Poster.Presentation.Extensions
                 var dbOptions = provider.GetRequiredService<IOptions<ConnectionStringsOptions>>().Value;
                 options.UseSqlServer(dbOptions.PosterConnection);
             });
-       
+
+            services.AddExceptionHandler<ValidationExceptionHandler>();
+            services.AddExceptionHandler<GlobalExceptionHandler>();
+            services.AddProblemDetails();
+
             return services;
         }
     }
