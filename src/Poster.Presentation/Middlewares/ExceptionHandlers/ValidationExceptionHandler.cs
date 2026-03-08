@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace Poster.Presentation.Middlewares.ExceptionHandlers
 {
-    public class ValidationExceptionHandler : IExceptionHandler
+    internal sealed class ValidationExceptionHandler : IExceptionHandler
     {
         private readonly ILogger<ValidationExceptionHandler> _logger;
         private readonly IProblemDetailsService _problemDetailsService;

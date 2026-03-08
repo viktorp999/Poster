@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Poster.Core.Entities.Posts;
+using Poster.Domain.Entities.Posts;
 using Poster.Infrastructure.Config.Entities.Posts.Common.Abstractions;
 
 namespace Poster.Infrastructure.Config.Entities.Posts

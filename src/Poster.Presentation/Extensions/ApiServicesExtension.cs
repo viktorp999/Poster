@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using Poster.Application;
+using Poster.Application.DI;
 using Poster.Application.Helpers.Options;
-using Poster.Infrastructure;
 using Poster.Infrastructure.Data;
+using Poster.Infrastructure.DI;
 using Poster.Presentation.Middlewares.ExceptionHandlers;
 
 namespace Poster.Presentation.Extensions

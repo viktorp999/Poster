@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Poster.Core.Entities.Joins.Comments.Likes;
+using Poster.Domain.Entities.Joins.Comments.Likes;
 
 namespace Poster.Infrastructure.Config.Entities.Joins.Comments.Likes
 {

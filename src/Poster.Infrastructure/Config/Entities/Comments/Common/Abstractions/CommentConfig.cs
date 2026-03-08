@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Poster.Core.Entities.Comments.Common.Abstractions;
+using Poster.Domain.Entities.Comments.Common.Abstractions;
 
 namespace Poster.Infrastructure.Config.Entities.Comments.Common.Abstractions
 {

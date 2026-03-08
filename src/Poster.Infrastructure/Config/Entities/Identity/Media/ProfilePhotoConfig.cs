@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Poster.Core.Entities.Identity.Media;
+using Poster.Domain.Entities.Identity.Media;
 using Poster.Infrastructure.Config.Entities.Media.Common.Abstractions;
 
 namespace Poster.Infrastructure.Config.Entities.Identity.Media

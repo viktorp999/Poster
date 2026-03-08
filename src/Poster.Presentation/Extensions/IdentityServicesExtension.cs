@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Poster.Application.Helpers.Options;
-using Poster.Core.Entities.Identity;
-using Poster.Core.Entities.Identity.Constrains;
 using Poster.Infrastructure.Data;
-using Poster.Presentation.Authorization;
+using Poster.Domain.Entities.Identity;
 using System.Text;
+using Poster.Domain.Entities.Identity.Constrains;
+using Poster.Presentation.Authorization;
 
 namespace Poster.Presentation.Extensions
 {

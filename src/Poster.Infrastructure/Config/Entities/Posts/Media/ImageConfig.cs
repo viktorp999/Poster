@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Poster.Core.Entities.Posts.Media;
+using Poster.Domain.Entities.Posts.Media;
 using Poster.Infrastructure.Config.Entities.Media.Common.Abstractions;
+
 
 namespace Poster.Infrastructure.Config.Entities.Posts.Media
 {

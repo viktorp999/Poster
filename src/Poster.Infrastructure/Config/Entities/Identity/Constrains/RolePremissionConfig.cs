@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Poster.Core.Entities.Identity.Constrains;
+using Poster.Domain.Entities.Identity.Constrains;
 
 namespace Poster.Infrastructure.Config.Entities.Identity.Constrains
 {

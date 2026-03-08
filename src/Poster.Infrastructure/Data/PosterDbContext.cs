@@ -1,16 +1,17 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Poster.Core.Entities.Comments;
-using Poster.Core.Entities.Identity;
-using Poster.Core.Entities.Identity.Constrains;
-using Poster.Core.Entities.Identity.Media;
-using Poster.Core.Entities.Joins.Comments.Likes;
-using Poster.Core.Entities.Joins.Posts.Likes;
-using Poster.Core.Entities.Joins.Posts.Saves;
-using Poster.Core.Entities.Posts;
-using Poster.Core.Entities.Posts.Media;
 using System.Reflection;
+using Poster.Domain.Entities.Identity;
+using Poster.Domain.Entities.Joins.Posts.Likes;
+using Poster.Domain.Entities.Identity.Constrains;
+using Poster.Domain.Entities.Joins.Comments.Likes;
+using Poster.Domain.Entities.Joins.Posts.Saves;
+using Poster.Domain.Entities.Comments;
+using Poster.Domain.Entities.Posts;
+using Poster.Domain.Entities.Posts.Media;
+using Poster.Domain.Entities.Identity.Media;
+
 
 namespace Poster.Infrastructure.Data
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Poster.Core.Entities.Joins.Posts.Saves;
+using Poster.Domain.Entities.Joins.Posts.Saves;
 
 namespace Poster.Infrastructure.Config.Entities.Joins.Posts.Saves
 {
