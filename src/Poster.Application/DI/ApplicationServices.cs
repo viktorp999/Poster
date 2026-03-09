@@ -2,7 +2,7 @@
 
 namespace Poster.Application.DI
 {
-    public static class ApplicationDependencyInjection
+    public static class ApplicationServices
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {

@@ -1,6 +1,6 @@
-﻿namespace Poster.Presentation.Extensions
+﻿namespace Poster.Presentation.DI
 {
-    public static class CorsServicesExtension
+    public static class CorsServices
     {
         public const string AllowAllPolicy = "AllowAll";
 

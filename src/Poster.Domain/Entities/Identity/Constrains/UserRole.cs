@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Poster.Domain.Entities.Identity;
 
 namespace Poster.Domain.Entities.Identity.Constrains
 {

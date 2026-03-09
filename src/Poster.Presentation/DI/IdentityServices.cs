@@ -10,9 +10,9 @@ using System.Text;
 using Poster.Domain.Entities.Identity.Constrains;
 using Poster.Presentation.Authorization;
 
-namespace Poster.Presentation.Extensions
+namespace Poster.Presentation.DI
 {
-    public static class IdentityServicesExtension
+    public static class IdentityServices
     {
         public static IServiceCollection AddIdentityServices(this IServiceCollection services,
             IConfiguration config)
@@ -28,8 +28,8 @@ namespace Poster.Presentation.Extensions
             })
                 .AddUserManager<UserManager<AppUser>>()
                 .AddSignInManager<SignInManager<AppUser>>()
-                .AddRoleManager<RoleManager<Role>>()
                 .AddRoles<Role>()
+                .AddRoleManager<RoleManager<Role>>()
                 .AddEntityFrameworkStores<PosterDbContext>()
                 .AddDefaultTokenProviders();
 

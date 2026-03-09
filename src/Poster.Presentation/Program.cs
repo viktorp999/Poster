@@ -1,4 +1,4 @@
-using Poster.Presentation.Extensions;
+using Poster.Presentation.DI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +10,7 @@ var app = builder.Build();
 
 app.UseExceptionHandler();
 
-app.UseCors(CorsServicesExtension.AllowAllPolicy);
+app.UseCors(CorsServices.AllowAllPolicy);
 
 app.MapControllers();
 

@@ -1,22 +1,17 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Poster.Application.DI;
+using Microsoft.Extensions.Configuration;
 using Poster.Application.Helpers.Options;
 using Poster.Infrastructure.Data;
-using Poster.Infrastructure.DI;
-using Poster.Presentation.Middlewares.ExceptionHandlers;
+using Microsoft.EntityFrameworkCore;
 
-namespace Poster.Presentation.Extensions
+namespace Poster.Infrastructure.DI
 {
-    public static class ApiServicesExtension
+    public static class InfrastructureServices
     {
-        public static IServiceCollection AddApiServices(this IServiceCollection services,
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services,
             IConfiguration config)
         {
-            services.AddControllers();
-            services.AddEndpointsApiExplorer();
-            services.AddApplication();
-            services.AddInfrastructure();
             services.AddOptions<ConnectionStringsOptions>()
                 .Bind(config.GetSection(ConnectionStringsOptions.SectionName))
                 .ValidateDataAnnotations()
@@ -28,10 +23,6 @@ namespace Poster.Presentation.Extensions
                 var dbOptions = provider.GetRequiredService<IOptions<ConnectionStringsOptions>>().Value;
                 options.UseSqlServer(dbOptions.PosterConnection);
             });
-
-            services.AddExceptionHandler<ValidationExceptionHandler>();
-            services.AddExceptionHandler<GlobalExceptionHandler>();
-            services.AddProblemDetails();
 
             return services;
         }

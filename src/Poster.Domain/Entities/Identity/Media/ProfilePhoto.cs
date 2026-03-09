@@ -1,5 +1,4 @@
-﻿using Poster.Domain.Entities.Identity;
-using Poster.Domain.Entities.Media.Common.Abstractions;
+﻿using Poster.Domain.Entities.Media.Common.Abstractions;
 
 namespace Poster.Domain.Entities.Identity.Media
 {
