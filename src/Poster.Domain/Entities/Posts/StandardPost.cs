@@ -13,9 +13,10 @@ namespace Poster.Domain.Entities.Posts
         { 
         }
 
-        public StandardPost(string title, string content, PostCategory category, User user = null,
+        public StandardPost(string title, string content, PostCategory category, 
+            Guid userId, User user = null,
             IEnumerable<Image> images = null, IEnumerable<StandardPostComment> comments = null) 
-            : base(title, content, category, user)
+            : base(title, content, category, userId, user)
         {
             Images = images;
             Comments = comments;

@@ -9,9 +9,11 @@ namespace Poster.Domain.Entities.Media.Posts
         {
         }
 
-        public Image(string path, StandardPost standardPost = null) 
-            : base(path)
+        public Image(string name ,string path, string contentType, 
+            Guid standardPostId, StandardPost standardPost = null) 
+            : base(name, path, contentType)
         {
+            StandardPostId = standardPostId;
             StandardPost = standardPost;
         }
 

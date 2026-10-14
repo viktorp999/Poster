@@ -9,9 +9,11 @@ namespace Poster.Domain.Entities.Media.Posts
         {
         }
 
-        public Video(string path, VideoPost videoPost = null)
-            : base(path)
+        public Video(string name, string path, string contentType, 
+            Guid videoPostId, VideoPost videoPost = null)
+            : base(name, path, contentType)
         {
+            VideoPostId = videoPostId;
             VideoPost = videoPost;
         }
 

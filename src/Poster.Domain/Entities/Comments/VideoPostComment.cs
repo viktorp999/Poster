@@ -10,10 +10,11 @@ namespace Poster.Domain.Entities.Comments
         {
         }
 
-        public VideoPostComment(string content, User user = null,
-            VideoPost videoPost = null)
-            : base(content, user)
+        public VideoPostComment(string content, Guid userId, Guid videoPostId,
+            User user = null, VideoPost videoPost = null)
+            : base(content, userId, user)
         {
+            VideoPostId = videoPostId;
             VideoPost = videoPost;
         }
 

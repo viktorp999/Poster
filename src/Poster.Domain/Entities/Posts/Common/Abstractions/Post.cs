@@ -11,12 +11,14 @@ namespace Poster.Domain.Entities.Posts.Common.Abstractions
 
         }
 
-        protected Post(string title, string content, PostCategory category, User user = null) 
+        protected Post(string title, string content, PostCategory category, 
+            Guid userId, User user = null) 
             : base()
         {
             Title = title;
             Content = content;
             Category = category;
+            UserId = userId;
             User = user;
         }
 

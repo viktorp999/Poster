@@ -9,9 +9,11 @@ namespace Poster.Domain.Entities.Media.Users
         {
         }
 
-        public Avatar(string path, User user = null)
-            : base(path)
+        public Avatar(string name, string path, string contentType, 
+            Guid userId, User user = null)
+            : base(name, path, contentType)
         {
+            UserId = userId;
             User = user;
         }
 

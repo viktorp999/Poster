@@ -9,10 +9,11 @@ namespace Poster.Domain.Entities.Comments.Common.Abstractions
         {
         }
 
-        protected Comment(string content, User user = null) 
+        protected Comment(string content, Guid userId, User user = null) 
             : base()
         {
             Content = content;
+            UserId = userId;
             User = user;
         }
 

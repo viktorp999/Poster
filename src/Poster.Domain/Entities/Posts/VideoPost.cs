@@ -13,9 +13,10 @@ namespace Poster.Domain.Entities.Posts
         { 
         }
 
-        public VideoPost(string title, string content, PostCategory category, User user = null,
+        public VideoPost(string title, string content, PostCategory category, 
+            Guid userId, User user = null,
             Video video = null, IEnumerable<VideoPostComment> comments = null) 
-            : base(title, content, category, user)
+            : base(title, content, category, userId, user)
         {
             Video = video;
             Comments = comments;

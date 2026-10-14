@@ -10,10 +10,11 @@ namespace Poster.Domain.Entities.Comments
         {
         }
 
-        public StandardPostComment(string content, User user = null,
-            StandardPost standardPost = null) 
-            : base(content, user)
+        public StandardPostComment(string content, Guid userId, Guid standardPostId,
+            User user = null, StandardPost standardPost = null) 
+            : base(content, userId, user)
         {
+            StandardPostId = standardPostId;
             StandardPost = standardPost;
         }
 

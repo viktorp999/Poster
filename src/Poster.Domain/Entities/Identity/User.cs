@@ -40,7 +40,7 @@ namespace Poster.Domain.Entities.Identity
         public Address Address { get; set; }
         public Gender Gender { get; set; }
         public string DateOfBirth { get; set; }
-        public string JoinedOn { get; init; }
+        public string JoinedOn { get; private init; }
         public bool IsDeleted { get; set; }
         public DateTime DeletedAt { get; set; }
         public Avatar Avatar { get; set; }
