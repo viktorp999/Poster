@@ -1,0 +1,22 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Poster.Domain.Entities.Media.Posts;
+using Poster.Infrastructure.Config.Entities.Media.Common.Abstractions;
+
+namespace Poster.Infrastructure.Config.Entities.Media.Posts
+{
+    public class VideoConfig : BaseMediaConfig<Video>
+    {
+        public override void Configure(EntityTypeBuilder<Video> builder)
+        {
+            base.Configure(builder);
+
+            builder.HasOne(vp => vp.VideoPost)
+                .WithOne(v => v.Video)
+                .HasForeignKey<Video>(fk => fk.VideoPostId)
+                .HasConstraintName("FKVideosVideoPostsId")
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+        }
+    }
+}

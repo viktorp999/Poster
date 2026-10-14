@@ -28,9 +28,7 @@ namespace Poster.Domain.ValueObjects.Common.Abstractions
             obj is BaseValueObject baseValueObject && ValuesAreEqual(baseValueObject);
 
         public override int GetHashCode() =>
-            GetAtomicValues().Aggregate(
-                default(int),
-                (hashcode, value) =>
+            GetAtomicValues().Aggregate(default(int), (hashcode, value) =>
                     HashCode.Combine(hashcode, value.GetHashCode()));
 
         protected abstract IEnumerable<object> GetAtomicValues();

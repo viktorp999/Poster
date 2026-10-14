@@ -6,7 +6,7 @@ namespace Poster.Domain.Entities.Common.Abstractions
         protected BaseEntity()
         {
             Id = Guid.CreateVersion7();
-            CreatedAt = DateTime.UtcNow.ToString("dddd, dd MMMM yyyy HH:mm");
+            CreatedAt = DateTime.UtcNow.ToString("dddd, dd MMMM, yyyy, HH:mm");
         }
 
         public Guid Id { get; private init; }

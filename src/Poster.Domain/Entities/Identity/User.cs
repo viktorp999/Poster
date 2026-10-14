@@ -5,7 +5,6 @@ using Poster.Domain.Entities.Identity.Constraints;
 using Poster.Domain.Entities.Joins.Users;
 using Poster.Domain.Entities.Media.Users;
 using Poster.Domain.Entities.Posts;
-using Poster.Domain.Enums.Users;
 using Poster.Domain.ValueObjects.Users;
 
 namespace Poster.Domain.Entities.Identity
@@ -14,36 +13,28 @@ namespace Poster.Domain.Entities.Identity
     {
         public User() : base()
         {
-            JoinedOn = DateTime.UtcNow.ToString("d-MMMM-yyyy");
+            JoinedOn = DateTime.UtcNow.ToString("dd-MMMM-yyyy");
         }
 
-        public User(string username, string firstName, string lastName, Address address, Gender gender, 
-            DateOnly dateOfBirth, Avatar avatar)
-            : this(username, firstName, lastName, address)
+        public User(string username, UserDetails details = null, 
+            Avatar avatar = null)
+            : this(username, details)
         {
-            Gender = gender;
-            DateOfBirth = dateOfBirth.ToString("d-MMMM-yyyy");
             Avatar = avatar;
             JoinedOn = DateTime.UtcNow.ToString("d-MMMM-yyyy");
         }
 
-        private User(string username, string firstName, string lastName, Address address)
+        private User(string username, UserDetails details)
             : base(username)
         {
-            FirstName = firstName;
-            LastName = lastName;
-            Address = address;
+            Details = details;
         }
 
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public Address Address { get; set; }
-        public Gender Gender { get; set; }
-        public string DateOfBirth { get; set; }
+        public UserDetails Details { get; set; }
         public string JoinedOn { get; private init; }
-        public bool IsDeleted { get; set; }
-        public DateTime DeletedAt { get; set; }
         public Avatar Avatar { get; set; }
+        public bool IsDeleted { get; set; } = false;
+        public DateTime DeletedAt { get; set; }
         public IEnumerable<StandardPost> Posts { get; set; }
         public IEnumerable<VideoPost> Videos { get; set; }
         public IEnumerable<StandardPostComment> PostComments { get; set; }
