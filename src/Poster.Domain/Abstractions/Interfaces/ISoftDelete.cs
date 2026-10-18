@@ -1,7 +1,6 @@
-﻿
-namespace Poster.Domain.Entities.Identity.Abstractions.Interfaces
+﻿namespace Poster.Domain.Abstractions.Interfaces
 {
-    public interface IUserSoftDelete
+    public interface ISoftDelete
     {
         public bool IsDeleted { get; set; }
         public DateTime DeletedAt { get; set; }

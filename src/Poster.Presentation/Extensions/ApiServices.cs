@@ -9,7 +9,7 @@ namespace Poster.Presentation.Extensions
         {
             services.AddApplication();
             services.AddInfrastructure();
-
+            
             return services;
         }
     }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Poster.Domain.Abstractions.Interfaces;
 using Poster.Domain.Entities.Comments;
-using Poster.Domain.Entities.Identity.Abstractions.Interfaces;
 using Poster.Domain.Entities.Identity.Constraints;
 using Poster.Domain.Entities.Joins.Users;
 using Poster.Domain.Entities.Media.Users;
@@ -9,7 +9,7 @@ using Poster.Domain.ValueObjects.Users;
 
 namespace Poster.Domain.Entities.Identity
 {
-    public sealed class User : IdentityUser<Guid>, IUserSoftDelete
+    public sealed class User : IdentityUser<Guid>, ISoftDelete
     {
         public User() : base()
         {

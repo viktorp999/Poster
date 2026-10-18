@@ -1,4 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Poster.Infrastructure.Data;
+using Poster.Infrastructure.Persistance.Interceptors;
+using Microsoft.EntityFrameworkCore;
 
 namespace Poster.Infrastructure
 {
@@ -6,6 +9,11 @@ namespace Poster.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
+            services.AddSingleton<SoftDeleteInterceptor>();
+            services.AddDbContext<PosterDbContext>((sp, options) => 
+            options.UseSqlServer("")
+               .AddInterceptors(sp.GetRequiredService<SoftDeleteInterceptor>()));
+
             return services;
         }
     }
