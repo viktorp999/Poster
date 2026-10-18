@@ -9,6 +9,7 @@ namespace Poster.Infrastructure.Config.Entities.Identity
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.ToTable("Users");
+            builder.HasQueryFilter(f => !f.IsDeleted);
             builder.HasKey(pk => pk.Id)
                 .HasName("PKUsers");
             builder.HasIndex(i => i.UserName)
