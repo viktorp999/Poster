@@ -12,7 +12,8 @@ namespace Poster.Infrastructure.Config.Entities.Joins.Users
             { 
                 k.VideoPostId, 
                 k.UserId 
-            });
+            })
+                .HasName("PKVideoPostLikes");
 
             builder.HasOne(vp => vp.VideoPost)
                 .WithMany(l => l.Likes)
@@ -23,7 +24,8 @@ namespace Poster.Infrastructure.Config.Entities.Joins.Users
             builder.HasOne(u => u.User)
                 .WithMany(lv => lv.LikedVideos)
                 .HasForeignKey(fk => fk.UserId)
-                .HasConstraintName("FKVideoPostLikesUsersId");
+                .HasConstraintName("FKVideoPostLikesUsersId")
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

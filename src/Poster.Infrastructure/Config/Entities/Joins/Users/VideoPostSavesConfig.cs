@@ -12,7 +12,7 @@ namespace Poster.Infrastructure.Config.Entities.Joins.Users
             { 
                 k.VideoPostId, 
                 k.UserId 
-            });
+            }).HasName("PKVideoPostSaves");
 
             builder.HasOne(vp => vp.VideoPost)
                 .WithMany(s => s.Saves)
@@ -23,7 +23,8 @@ namespace Poster.Infrastructure.Config.Entities.Joins.Users
             builder.HasOne(u => u.User)
                 .WithMany(sv => sv.SavedVideos)
                 .HasForeignKey(fk => fk.UserId)
-                .HasConstraintName("FKVideoPostSavesUsersId");
+                .HasConstraintName("FKVideoPostSavesUsersId")
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

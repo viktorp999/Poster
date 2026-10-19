@@ -10,7 +10,7 @@ namespace Poster.Infrastructure.Config.Entities.Posts.Common.Abstractions
         public virtual void Configure(EntityTypeBuilder<TPost> builder)
         {
             builder.UseTpcMappingStrategy();
-            builder.HasKey(pk => pk.Id);
+            builder.HasKey(pk => pk.Id).HasName($"PK{typeof(TPost).Name}s");
             builder.HasIndex(i => i.Title)
                 .HasDatabaseName("IXPostsTitle")
                 .IsUnique();

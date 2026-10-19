@@ -12,7 +12,8 @@ namespace Poster.Infrastructure.Config.Entities.Joins.Users
             { 
                 k.StandardPostId, 
                 k.UserId 
-            });
+            })
+                .HasName("PKStandardPostSaves");
 
             builder.HasOne(sp => sp.StandardPost)
                 .WithMany(s => s.Saves)
@@ -23,7 +24,8 @@ namespace Poster.Infrastructure.Config.Entities.Joins.Users
             builder.HasOne(u => u.User)
                 .WithMany(sp => sp.SavedPosts)
                 .HasForeignKey(fk => fk.UserId)
-                .HasConstraintName("FKStandardPostSavesUsersId");
+                .HasConstraintName("FKStandardPostSavesUsersId")
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

@@ -22,7 +22,8 @@ namespace Poster.Infrastructure.Config.Entities.Comments
                 .WithMany(pc => pc.PostComments)
                 .HasForeignKey(fk => fk.UserId)
                 .HasConstraintName("FKStandardPostCommentsUsersId")
-                .IsRequired();
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

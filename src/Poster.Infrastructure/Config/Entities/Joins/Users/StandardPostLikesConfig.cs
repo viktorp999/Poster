@@ -12,7 +12,8 @@ namespace Poster.Infrastructure.Config.Entities.Joins.Users
             { 
                 k.StandardPostId, 
                 k.UserId 
-            });
+            })
+                .HasName("PKStandardPostLikes");
 
             builder.HasOne(sp => sp.StandardPost)
                 .WithMany(l => l.Likes)
@@ -23,7 +24,8 @@ namespace Poster.Infrastructure.Config.Entities.Joins.Users
             builder.HasOne(u => u.User)
                 .WithMany(lp => lp.LikedPosts)
                 .HasForeignKey(fk => fk.UserId)
-                .HasConstraintName("FKStandardPostLikesUsersId");
+                .HasConstraintName("FKStandardPostLikesUsersId")
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

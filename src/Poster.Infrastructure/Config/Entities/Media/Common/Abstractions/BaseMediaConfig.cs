@@ -10,7 +10,7 @@ namespace Poster.Infrastructure.Config.Entities.Media.Common.Abstractions
         public virtual void Configure(EntityTypeBuilder<TMedia> builder)
         {
             builder.UseTpcMappingStrategy();
-            builder.HasKey(pk => pk.Id);
+            builder.HasKey(pk => pk.Id).HasName($"PK{typeof(TMedia).Name}s");
             builder.Property(p => p.CreatedAt)
                 .IsRequired();
             builder.Property(p => p.Path)
@@ -20,6 +20,7 @@ namespace Poster.Infrastructure.Config.Entities.Media.Common.Abstractions
             builder.Property(p => p.ContentType)
                 .IsRequired();
             builder.Property(p => p.Size)
+                .HasColumnName("Size(bytes)")
                 .IsRequired();
         }
     }

@@ -10,7 +10,7 @@ namespace Poster.Infrastructure.Config.Entities.Comments.Common.Abstractions
         public virtual void Configure(EntityTypeBuilder<TComment> builder)
         {
             builder.UseTpcMappingStrategy();
-            builder.HasKey(pk => pk.Id);
+            builder.HasKey(pk => pk.Id).HasName($"PK{typeof(TComment).Name}s");
             builder.Property(p => p.CreatedAt)
                 .IsRequired();
             builder.Property(p => p.Content)

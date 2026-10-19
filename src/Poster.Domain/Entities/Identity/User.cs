@@ -16,17 +16,20 @@ namespace Poster.Domain.Entities.Identity
             JoinedOn = DateTime.UtcNow.ToString("dd-MMMM-yyyy");
         }
 
-        public User(string username, UserDetails details = null, 
-            Avatar avatar = null)
-            : this(username, details)
+        public User(string username, string email, 
+            UserDetails details = null, Avatar avatar = null)
+            : this(username, email, details)
         {
             Avatar = avatar;
             JoinedOn = DateTime.UtcNow.ToString("d-MMMM-yyyy");
         }
 
-        private User(string username, UserDetails details)
+        private User(string username, string email, UserDetails details)
             : base(username)
         {
+            NormalizedUserName = username.ToUpperInvariant();
+            Email = email;
+            NormalizedEmail = email.ToUpperInvariant();
             Details = details;
         }
 

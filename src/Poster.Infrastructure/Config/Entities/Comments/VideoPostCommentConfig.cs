@@ -22,7 +22,8 @@ namespace Poster.Infrastructure.Config.Entities.Comments
                 .WithMany(vc => vc.VideoComments)
                 .HasForeignKey(fk => fk.UserId)
                 .HasConstraintName("FKVideoPostCommentsUsersId")
-                .IsRequired();
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

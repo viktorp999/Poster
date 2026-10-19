@@ -9,7 +9,6 @@ using Poster.Domain.Entities.Media.Posts;
 using Poster.Domain.Entities.Media.Users;
 using Poster.Domain.Entities.Posts;
 using System.Reflection;
-using System.Reflection.Emit;
 
 namespace Poster.Infrastructure.Data
 {
@@ -17,6 +16,10 @@ namespace Poster.Infrastructure.Data
         UserRole, IdentityUserLogin<Guid>, 
         IdentityRoleClaim<Guid>, IdentityUserToken<Guid>>
     {
+        public PosterDbContext()
+        {
+        }
+
         public PosterDbContext(DbContextOptions<PosterDbContext> options) 
             : base(options)
         {
@@ -33,10 +36,14 @@ namespace Poster.Infrastructure.Data
         public DbSet<StandardPostSaves> StandardPostSaves { get; set; }
         public DbSet<VideoPostLikes> VideoPostLikes { get; set; }
         public DbSet<VideoPostSaves> VideoPostSaves { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
+        public DbSet<RolePermission> RolePermissions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             builder.Entity<IdentityUserClaim<Guid>>()
                 .ToTable("UserClaims");
@@ -49,8 +56,6 @@ namespace Poster.Infrastructure.Data
 
             builder.Entity<IdentityUserToken<Guid>>()
                 .ToTable("UserTokens");
-
-            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }

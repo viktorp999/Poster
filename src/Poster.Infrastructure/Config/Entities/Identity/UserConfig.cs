@@ -12,12 +12,10 @@ namespace Poster.Infrastructure.Config.Entities.Identity
             builder.HasQueryFilter(f => !f.IsDeleted);
             builder.HasKey(pk => pk.Id)
                 .HasName("PKUsers");
-            builder.HasIndex(i => i.UserName)
-                .HasDatabaseName("IXUsername")
-                .IsUnique();
             builder.Property(p => p.UserName)
-                .HasMaxLength(50)
                 .HasColumnName("Username")
+                .IsRequired();
+            builder.Property(p => p.Email)
                 .IsRequired();
             builder.Property(p => p.JoinedOn)
                 .IsRequired();
@@ -25,7 +23,7 @@ namespace Poster.Infrastructure.Config.Entities.Identity
                 .HasDefaultValue(false)
                 .IsRequired();
             builder.Property(p => p.DeletedAt)
-                .IsRequired(false);
+                .IsRequired();
             builder.HasMany(ur => ur.UserRoles)
                 .WithOne(u => u.User)
                 .HasForeignKey(u => u.UserId)
@@ -35,20 +33,26 @@ namespace Poster.Infrastructure.Config.Entities.Identity
             {
                 details.Property(p => p.FirstName)
                     .HasMaxLength(50)
-                    .IsRequired(false);
+                    .HasColumnName("FirstName")
+                    .IsRequired();
                 details.Property(p => p.LastName)
                     .HasMaxLength(50)
-                    .IsRequired(false);
+                    .HasColumnName("LastName")
+                    .IsRequired();
                 details.Property(p => p.City)
                     .HasMaxLength(50)
+                    .HasColumnName("City")
                     .IsRequired(false);
                 details.Property(p => p.Country)
                     .HasMaxLength(50)
+                    .HasColumnName("Country")
                     .IsRequired(false);
                 details.Property(p => p.Gender)
                     .HasMaxLength(20)
+                    .HasColumnName("Gender")
                     .IsRequired(false);
                 details.Property(p => p.DateOfBirth)
+                    .HasColumnName("DateOfBirth")
                     .IsRequired(false);
             });
         }

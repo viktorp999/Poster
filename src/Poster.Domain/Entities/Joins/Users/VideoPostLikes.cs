@@ -3,7 +3,7 @@ using Poster.Domain.Entities.Posts;
 
 namespace Poster.Domain.Entities.Joins.Users
 {
-    public class VideoPostLikes
+    public sealed class VideoPostLikes
     {
         public Guid VideoPostId { get; set; }
         public VideoPost VideoPost { get; set; }

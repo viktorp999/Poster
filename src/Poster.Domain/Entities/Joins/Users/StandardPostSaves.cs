@@ -3,7 +3,7 @@ using Poster.Domain.Entities.Posts;
 
 namespace Poster.Domain.Entities.Joins.Users
 {
-    public class StandardPostSaves
+    public sealed class StandardPostSaves
     {
         public Guid StandardPostId { get; set; }
         public StandardPost StandardPost { get; set; }
