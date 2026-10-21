@@ -14,9 +14,9 @@ namespace Poster.Domain.Entities.Posts
         }
 
         public StandardPost(string title, string content, PostCategory category, 
-            Guid userId, User user = null,
+            Guid userId, bool isSensitive = false, User user = null,
             IEnumerable<Image> images = null, IEnumerable<StandardPostComment> comments = null) 
-            : base(title, content, category, userId, user)
+            : base(title, content, category, userId, isSensitive, user)
         {
             Images = images;
             Comments = comments;

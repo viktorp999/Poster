@@ -24,6 +24,9 @@ namespace Poster.Infrastructure.Config.Entities.Posts.Common.Abstractions
             builder.Property(p => p.Category)
                 .HasConversion<string>()
                 .IsRequired();
+            builder.Property(p => p.IsSensitive)
+                .HasDefaultValue(false)
+                .IsRequired();
         }
     }
 }

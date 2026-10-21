@@ -11,20 +11,22 @@ namespace Poster.Domain.Entities.Posts.Common.Abstractions
 
         }
 
-        protected Post(string title, string content, PostCategory category, 
-            Guid userId, User user = null) 
+        protected Post(string title, string content, PostCategory category,
+            Guid userId, bool isSensitive = false, User user = null) 
             : base()
         {
             Title = title;
             Content = content;
             Category = category;
             UserId = userId;
+            IsSensitive = isSensitive;
             User = user;
         }
 
         public string Title { get; set; }
         public string Content { get; set; }
         public PostCategory Category { get; set; }
+        public bool IsSensitive { get; set; } = false;
         public Guid UserId { get; set; }
         public User User { get; set; }
     }
