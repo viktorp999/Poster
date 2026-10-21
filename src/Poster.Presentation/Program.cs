@@ -1,5 +1,5 @@
 using Poster.Infrastructure.Data;
-using Poster.Presentation.Database;
+using Poster.Infrastructure.Persistance.Database;
 using Poster.Presentation.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);

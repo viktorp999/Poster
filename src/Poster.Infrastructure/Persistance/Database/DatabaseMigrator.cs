@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Poster.Presentation.Database
+namespace Poster.Infrastructure.Persistance.Database
 {
     public class DatabaseMigrator
     {
