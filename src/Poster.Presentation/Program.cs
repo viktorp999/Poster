@@ -1,6 +1,7 @@
 using Poster.Infrastructure.Data;
 using Poster.Infrastructure.Persistance.Database;
 using Poster.Presentation.Extensions;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,23 @@ if (app.Environment.IsDevelopment())
 
         throw;
     }
+
+    app.MapOpenApi();
+    app.MapScalarApiReference(options =>
+    {
+        options
+            .WithTitle("Poster Api Documentation")
+            .WithTheme(ScalarTheme.None)
+            .WithDefaultHttpClient(
+                ScalarTarget.CSharp,
+                ScalarClient.HttpClient)
+            .WithClassicLayout()
+            .ForceDarkMode()
+            .ShowOperationId()
+            .SortTagsAlphabetically()
+            .SortOperationsByMethod();
+    });
 }
 
+app.MapControllers();
 app.Run();

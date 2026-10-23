@@ -1,6 +1,7 @@
 ﻿using Poster.Application;
 using Poster.Application.Helpers.Options;
 using Poster.Infrastructure;
+using Poster.Presentation.OpenApiSecurity.JWT;
 
 namespace Poster.Presentation.Extensions
 {
@@ -12,6 +13,11 @@ namespace Poster.Presentation.Extensions
             services.AddInfrastructure();
             services.AddOptions<ConnectionStringsOptions>()
                 .BindConfiguration(ConnectionStringsOptions.SectionName);
+            services.AddControllers();
+            services.AddOpenApi(options =>
+            {
+                options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
+            });
             
             return services;
         }
