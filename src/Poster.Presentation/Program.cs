@@ -6,6 +6,7 @@ using Scalar.AspNetCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApiServices();
+builder.Services.AddApiVersioningConfig();
 
 var app = builder.Build();
 
@@ -24,11 +25,14 @@ if (app.Environment.IsDevelopment())
         throw;
     }
 
-    app.MapOpenApi();
+    var versions = app.DescribeApiVersions();
+
+    app.MapOpenApi()
+        .WithDocumentPerVersion();
+
     app.MapScalarApiReference(options =>
     {
         options
-            .WithTitle("Poster Api Documentation")
             .WithTheme(ScalarTheme.None)
             .WithDefaultHttpClient(
                 ScalarTarget.CSharp,
@@ -38,6 +42,19 @@ if (app.Environment.IsDevelopment())
             .ShowOperationId()
             .SortTagsAlphabetically()
             .SortOperationsByMethod();
+
+        for (var i = 0; i < versions.Count; i++)
+        {
+            var version = versions[i];
+
+            options.WithTitle($"Poster Api {version.ApiVersion}")
+            .WithOpenApiRoutePattern($"/openapi/{version}.json");
+
+            options.AddDocument(
+                version.GroupName!,
+                version.GroupName!,
+                isDefault: i == versions.Count - 1);
+        }
     });
 }
 

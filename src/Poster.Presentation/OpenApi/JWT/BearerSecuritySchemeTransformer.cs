@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.OpenApi;
 using Microsoft.OpenApi;
 
-namespace Poster.Presentation.OpenApiSecurity.JWT
+namespace Poster.Presentation.OpenApi.JWT
 {
     public sealed class BearerSecuritySchemeTransformer : IOpenApiDocumentTransformer
     {

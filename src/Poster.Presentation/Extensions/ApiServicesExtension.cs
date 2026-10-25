@@ -1,7 +1,7 @@
 ﻿using Poster.Application;
 using Poster.Application.Helpers.Options;
 using Poster.Infrastructure;
-using Poster.Presentation.OpenApiSecurity.JWT;
+using Poster.Presentation.OpenApi.JWT;
 
 namespace Poster.Presentation.Extensions
 {
@@ -18,7 +18,7 @@ namespace Poster.Presentation.Extensions
             {
                 options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
             });
-            
+              
             return services;
         }
     }
