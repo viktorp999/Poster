@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApiServices();
 builder.Services.AddApiVersioningConfig();
+builder.Services.AddCorsConfig();
 
 var app = builder.Build();
 
@@ -58,5 +59,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseRouting();
+app.UseCors(CorsConfigExtension.PolicyName);
 app.MapControllers();
 app.Run();
