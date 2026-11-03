@@ -11,6 +11,8 @@ builder.Services.AddCorsConfig();
 
 var app = builder.Build();
 
+app.UseExceptionHandler();
+
 if (app.Environment.IsDevelopment())
 {
     try
