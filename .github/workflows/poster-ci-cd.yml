@@ -1,0 +1,81 @@
+name: Poster CI-CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    env:
+      SOLUTION_PATH: "Poster.slnx"
+      WEB_API_PATH: "src/Poster.Presentation/Poster.Presentation.csproj"
+
+    steps:
+    - name: Checkout Source Code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 26
+        cache: 'npm'
+
+    - name: Install Angular Dependencies
+      working-directory: src/Poster.UI
+      run: npm ci
+
+    - name: Run Tests
+      working-directory: src/Poster.UI
+      run: npm run test -- --watch=false --browsers=ChromeHeadless
+
+    - name: Build Angular Application
+      working-directory: src/Poster.UI
+      run: npm run build -- --configuration=production
+
+    - name: Upload Angular Build Artifacts
+      uses: actions/actions-runner-share/upload-artifact@v4
+      with:
+        name: angular-dist
+        path: dist/
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0'
+
+    - name: Cache NuGet Packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj', '**/*.sln') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
+
+    - name: Restore NuGet Packages
+      run: dotnet restore ${{ env.SOLUTION_PATH }}
+
+    - name: Build .NET Application
+      run: dotnet build ${{ env.SOLUTION_PATH }} --configuration Release --no-restore
+
+    - name: Run .NET Tests
+      run: dotnet test ${{ env.SOLUTION_PATH }} --configuration Release --no-build --verbosity normal
+
+    - name: Install EF Core CLI Tool
+      run: dotnet tool install --global dotnet-ef
+
+    - name: Verify EF Core Migrations Integrity
+      run: |
+        dotnet ef migrations bundle --project src/Poster.Infrastructure --startup-project ${{ env.WEB_API_PATH }} --output efbundle --configuration Release
+
+    - name: Publish .NET Application
+      run: dotnet publish ${{ env.WEB_API_PATH }} --configuration Release --no-build --output ./publish
+
+    - name: Upload .NET Build Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: publish-build
+        path: ./publish/
+
