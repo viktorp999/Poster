@@ -9,6 +9,6 @@
     <Project Path="tests/Poster.UnitTests/Poster.UnitTests.csproj" />
   </Folder>
   <Project Path="docker-compose.dcproj">
-    <Build />
+    <Build Solution="Release|*" />
   </Project>
 </Solution>
