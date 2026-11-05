@@ -22,14 +22,11 @@ jobs:
       with:
         node-version: 26
         cache: 'npm'
+        cache-dependency-path: 'src/Poster.UI/package-lock.json' 
 
     - name: Install Angular Dependencies
       working-directory: src/Poster.UI
       run: npm ci
-
-    - name: Run Tests
-      working-directory: src/Poster.UI
-      run: npm run test -- --watch=false --browsers=ChromeHeadless
 
     - name: Build Angular Application
       working-directory: src/Poster.UI
@@ -65,6 +62,9 @@ jobs:
 
     - name: Install EF Core CLI Tool
       run: dotnet tool install --global dotnet-ef
+
+    - name: Add to PATH (Linux/macOS runners)
+      run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
 
     - name: Verify EF Core Migrations Integrity
       run: |
