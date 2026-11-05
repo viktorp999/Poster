@@ -35,10 +35,10 @@ jobs:
       working-directory: src/Poster.UI
       run: npm run build -- --configuration=production
 
-    - name: Upload Angular Build Artifacts
-      uses: actions/actions-runner-share/upload-artifact@v4
+    - name: Upload Angular Build Artifact
+      uses: actions/upload-artifact@v4
       with:
-        name: angular-dist
+        name: angular-production-build
         path: dist/
 
     - name: Setup .NET SDK
@@ -76,6 +76,6 @@ jobs:
     - name: Upload .NET Build Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: publish-build
+        name: dotnet-publish-build
         path: ./publish/
 
