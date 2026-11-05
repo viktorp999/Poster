@@ -1,34 +1,34 @@
 services:
-  api-dev:
-    image: ${DOCKER_REGISTRY-}posterpresentation
-    container_name: api-container
+  poster-api:
+    image: poster-api-image
+    container_name: poster-api-container
     restart: unless-stopped
     build:
       context: .
       dockerfile: src/Poster.Presentation/Dockerfile
     ports:
-      - "5000"
+      - ${APP_PORT}
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings:"Server=localhost;Database=PosterDb;Trusted_Connection=True;MultipleActiveResultSets=true;Encrypt=True;TrustServerCertificate=True;"
+      - ASPNETCORE_ENVIRONMENT=${APP_ENV}
+      - ConnectionStrings:"Server=${DB_HOST};Database=PosterDb;Trusted_Connection=True;MultipleActiveResultSets=true;Encrypt=True;TrustServerCertificate=True;"
     volumes:
       - .:/src
       - /src/bin
       - /src/obj
     depends_on:
-      - db
+      - poster-db
     networks:
       - app-network
 
-  db:
+  poster-db:
     image: mcr.microsoft.com/mssql/server:2025-latest
-    container_name: db-container
+    container_name: poster-db-container
     restart: unless-stopped
     environment:
-      ACCEPT_EULA: "Y"
-      SA_PASSWORD: "YourStrongPassword123!"
+      - ACCEPT_EULA=${ACCEPT_EULA}
+      - MSSQL_SA_PASSWORD=${DB_PASSWORD}
     ports:
-      - "1433"
+      - "${DB_PORT}"
     volumes:
       - sqlserver_data:/var/opt/mssql
     healthcheck:
@@ -49,28 +49,28 @@ services:
       retries: 10
       start_period: 30s
 
-  ui-dev:
-    image: poster-ui
-    container_name: ui-container
+  poster-ui:
+    image: poster-ui-image
+    container_name: poster-ui-container
     restart: unless-stopped
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: src/Poster.UI/Dockerfile
     ports:
-      - "4200"
+      - "4200:80"
     volumes:
       - .:/app
       - /app/node_modules
     environment:
       - CHOKIDAR_USEPOLLING=true
     depends_on:
-      - api-dev
+      - poster-api
     networks:
       - app-network
 
-  networks:
-   app-network:
-    driver: bridge
+networks:
+  app-network:
+   driver: bridge
 
-  volumes:
+volumes:
    sqlserver_data:

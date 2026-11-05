@@ -1,4 +1,13 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".dockerignore" />
+    <File Path=".env" />
+    <File Path=".env.example" />
+    <File Path=".github/workflows/poster-ci-cd.yml" />
+    <File Path=".gitignore" />
+    <File Path="docker-compose.override.yml" />
+    <File Path="docker-compose.yml" />
+  </Folder>
   <Folder Name="/src/">
     <Project Path="src/Poster.Application/Poster.Application.csproj" />
     <Project Path="src/Poster.Domain/Poster.Domain.csproj" />
@@ -8,7 +17,4 @@
   <Folder Name="/tests/">
     <Project Path="tests/Poster.UnitTests/Poster.UnitTests.csproj" />
   </Folder>
-  <Project Path="docker-compose.dcproj">
-    <Build Solution="Release|*" />
-  </Project>
 </Solution>
