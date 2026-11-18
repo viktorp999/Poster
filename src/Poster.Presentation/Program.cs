@@ -1,4 +1,6 @@
 using Poster.Infrastructure.Data;
+using Poster.Infrastructure.Data.SeedData.DataSeeders;
+using Poster.Infrastructure.Data.SeedData.DataSeeders.Common;
 using Poster.Infrastructure.Persistance.Database;
 using Poster.Presentation.Extensions;
 using Scalar.AspNetCore;
@@ -6,6 +8,7 @@ using Scalar.AspNetCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApiServices();
+builder.Services.AddIdentityServices();
 builder.Services.AddApiVersioningConfig();
 builder.Services.AddCorsConfig();
 
@@ -17,9 +20,13 @@ if (app.Environment.IsDevelopment())
 {
     try
     {
-        using IServiceScope scope = app.Services.CreateScope();
+        using var scope = app.Services.CreateScope();
+        var services = scope.ServiceProvider;
+        var dbContext = services.GetRequiredService<PosterDbContext>();
 
-        DatabaseMigrator.ApplyMigrations<PosterDbContext>(scope);
+        await DatabaseMigrator.ApplyMigrationsAsync<PosterDbContext>(scope);
+        await IdentitySeeder.SeedIdentityAsync(services);
+        await DataSeeder.SeedDataAsync(dbContext);
     }
     catch (Exception ex)
     {

@@ -5,13 +5,13 @@ namespace Poster.Infrastructure.Persistance.Database
 {
     public class DatabaseMigrator
     {
-        public static void ApplyMigrations<TDbContext>(IServiceScope scope)
+        public static async Task ApplyMigrationsAsync<TDbContext>(IServiceScope scope)
             where TDbContext : DbContext
         {
-            using TDbContext context = scope.ServiceProvider
+            TDbContext context = scope.ServiceProvider
                 .GetRequiredService<TDbContext>();
 
-            context.Database.Migrate();
+            await context.Database.MigrateAsync();
         }
     }
 }

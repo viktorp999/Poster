@@ -17,7 +17,7 @@ namespace Poster.Domain.Entities.Identity
         }
 
         public User(string username, string email, 
-            UserDetails details = null, Avatar avatar = null)
+            UserDetails details, Avatar avatar = null)
             : this(username, email, details)
         {
             Avatar = avatar;

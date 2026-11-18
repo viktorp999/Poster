@@ -9,7 +9,7 @@ namespace Poster.Domain.Entities.Common.Abstractions
             CreatedAt = DateTime.UtcNow.ToString("dddd, dd MMMM, yyyy, HH:mm");
         }
 
-        public Guid Id { get; private init; }
+        public Guid Id { get; init; }
         public string CreatedAt { get; private init; }
     }
 }
