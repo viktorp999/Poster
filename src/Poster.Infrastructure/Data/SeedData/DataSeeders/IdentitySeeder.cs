@@ -4,6 +4,7 @@ using Poster.Domain.Entities.Identity;
 using Poster.Domain.Entities.Identity.Constraints;
 using Poster.Domain.Enums.Users;
 using Poster.Infrastructure.Data.SeedData.TestData.Identity;
+using Poster.Infrastructure.Data.SeedData.TestData.Identity.Constraints;
 
 namespace Poster.Infrastructure.Data.SeedData.DataSeeders
 {
@@ -13,13 +14,13 @@ namespace Poster.Infrastructure.Data.SeedData.DataSeeders
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<Role>>();
             var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
-            var roles = new[] { Roles.Admin, Roles.User };
+            var roles = RolesData.RolesTestData;
 
             foreach (var role in roles)
             {
-                if (!await roleManager.RoleExistsAsync(role.ToString()))
+                if (!await roleManager.RoleExistsAsync(role.Name))
                 {
-                    await roleManager.CreateAsync(new Role(role.ToString()));
+                    await roleManager.CreateAsync(role);
                 }
             }
 
